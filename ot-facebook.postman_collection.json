@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "df330c52-0c74-46e0-83b7-44cbc953aead",
+		"name": "ot-facebook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Custom Audience",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Empty CA\",\r\n    \"subtype\": \"CUSTOM\",\r\n    \"description\": \"Users From my website\",\r\n    \"customer_file_source\": \"USER_PROVIDED_ONLY\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/custom-audience",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"custom-audience"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fname\": \"Erickson\",\r\n    \"lname\": \"Tissera\",\r\n    \"email\": \"ericksontissera@ymail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/custom-audience/addusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"custom-audience",
+						"addusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fname\": \"Shehan\",\r\n    \"lname\": \"Tissera\",\r\n    \"email\": \"shehanproductions@ymail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/custom-audience/removeusers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"custom-audience",
+						"removeusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Pixel Audience",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My CPA\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/pixel-audience",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pixel-audience"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pixel Audience",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/pixel-audience/1476006945895134",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"pixel-audience",
+						"1476006945895134"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

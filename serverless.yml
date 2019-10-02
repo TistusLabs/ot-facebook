@@ -1,0 +1,140 @@
+service: ot-facebook
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  environment:
+    FB_ACCESS_TOKEN: EAAmGp9JvToMBAGJecgcxHUh91w1xYR0EXCHFsMpCB0aZAo7bCy8tiIQXcB4n3pvbtmWQracM7StvXVp4TZBHzi5RZAIhaCNP9ZASLQvSBAp66xEg1049jKvZC3izKZAt4D1qXOUZAMaq16dYm8FmIUAPZCpqfA7Hz29qTUGGsnVbC7liB9wnBkZAJhyQJQ0rVZChc8BCxIDaGJzSDvQAOGM6SuwY3d7ZCC9eVPQwJqBCaAA7Oo6mm7J4yEj
+    FB_APP_SECRET: cf8d97651151f31da188b697440b0621
+    FB_APP_ID: 2681330138566275
+    FB_AD_ACCOUNT: act_36078916
+    DEBUG_ON: true
+
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+
+# you can add statements to the Lambda function's IAM Role here
+#  iamRoleStatements:
+#    - Effect: "Allow"
+#      Action:
+#        - "s3:ListBucket"
+#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#    - Effect: "Allow"
+#      Action:
+#        - "s3:PutObject"
+#      Resource:
+#        Fn::Join:
+#          - ""
+#          - - "arn:aws:s3:::"
+#            - "Ref" : "ServerlessDeploymentBucket"
+#            - "/*"
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+# you can add packaging information here
+#package:
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: /
+          method: GET
+          cors: true
+  custom-audience-create:
+    handler: handlers/custom-audience-create/index.handler
+    events:
+      - http:
+          path: /custom-audience
+          method: POST
+          cors: true
+  custom-audience-addusers:
+    handler: handlers/custom-audience-addusers/index.handler
+    events:
+      - http:
+          path: /custom-audience/addusers
+          method: PUT
+          cors: true
+  custom-audience-removeusers:
+    handler: handlers/custom-audience-removeusers/index.handler
+    events:
+      - http:
+          path: /custom-audience/removeusers
+          method: PUT
+          cors: true
+  pixel-audience-create:
+    handler: handlers/pixel-audience-create/index.handler
+    events:
+      - http:
+          path: /pixel-audience
+          method: POST
+          cors: true
+  pixel-audience-get:
+    handler: handlers/pixel-audience-get/index.handler
+    events:
+      - http:
+          path: /pixel-audience/{pixelid}
+          method: GET
+          cors: true
+plugins:
+  - serverless-offline
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - http:
+#          path: users/create
+#          method: get
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+#      - alb:
+#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
+#          priority: 1
+#          conditions:
+#            host: example.com
+#            path: /hello
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
